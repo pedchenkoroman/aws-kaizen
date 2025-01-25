@@ -1,6 +1,14 @@
-import { EC2Client, StopInstancesCommand, StartInstancesCommand } from "@aws-sdk/client-ec2";
+import {
+  EC2Client,
+  StopInstancesCommand,
+  StartInstancesCommand
+} from '@aws-sdk/client-ec2';
+import {Event} from '../types/Event';
 
-const getCommand = (event: {action: 'on' | 'off', instanceId: string}): StartInstancesCommand | StopInstancesCommand => {
+/**
+ * Get command by action name
+ */
+const getCommand = (event: Event): StartInstancesCommand | StopInstancesCommand => {
   const commandsMap = {
     on: new StartInstancesCommand({
       InstanceIds: [event.instanceId],
@@ -14,7 +22,7 @@ const getCommand = (event: {action: 'on' | 'off', instanceId: string}): StartIns
   return commandsMap[event.action];
 }
 
-export const handler = async (event: {action: 'on' | 'off', instanceId: string}) => {
+export const handler = async (event: Event) => {
   const client = new EC2Client();
   const command = getCommand(event);
   const response = await client.send(command);
