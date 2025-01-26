@@ -1,6 +1,6 @@
-# Welcome to your CDK TypeScript project
+# Kaizen or how to start/stop ec2
 
-This is a blank project for CDK development with TypeScript.
+This repository contains the source code referenced in the [article](https://dev.to/pedchenkoroman/kaizen-or-how-to-startstop-ec2-18aa).
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
